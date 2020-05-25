@@ -27,18 +27,13 @@ const drawCircle = () => {
     const percentCompleted = 100
     
     return `<div class="square">
-    <svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg class="circular-chart" width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="75" cy="75" r="30" fill="orange" stroke-width="5"/>
+        <line x1="75" x2="75" y1="45" y2="105" stroke="black" stroke-width="5"/>
+        <path d="M 55 55 C 55 55, 75 75, 55 100" stroke="black" stroke-width="5" fill="transparent"/>
+        <path d="M 95 55 C 95 55, 75 75, 95 100" stroke="black" stroke-width="5" fill="transparent"/>
 
-  
-
-  <circle cx="25" cy="75" r="70" fill="orange" stroke-width="5"/>
-
-  <line x1="25" x2="25" y1="55" y2="95" stroke="black" stroke-width="5"/>
-  <polyline points="60 110 65 120 70 115 75 130 80 125 85 140 90 135 95 150 100 145"
-      stroke="orange" fill="transparent" stroke-width="5"/>
-
-  <path d="M20,230 Q40,205 50,230 T90,230" fill="none" stroke="blue" stroke-width="5"/>
-</svg>
+    </svg>
     
     </div>`
 }
@@ -54,12 +49,13 @@ const drawCircle = () => {
     </svg> */}
 
 function attachListenerToJumpball() {
-    const jumpball = document.querySelector('path.circle')
+    const jumpball = document.querySelector('.circular-chart')
     jumpball.addEventListener('click', handleJumpball)  
 }
 
 const handleJumpball = (event) => {
     console.log("you've got the jumpball")
+    document.querySelector('.U26fgb.JRY2Pb').click()
 } 
 
 let intervalToCheckIfJoined = setInterval(() => {

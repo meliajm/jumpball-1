@@ -14,8 +14,8 @@
 } */
 
 .square {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     position: relative;
     animation-name: jumpball;
     animation-duration: 4s;
