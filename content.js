@@ -55,7 +55,11 @@ function attachListenerToJumpball() {
 
 const handleJumpball = (event) => {
     console.log("you've got the jumpball")
+    const startGameButton = document.getElementById('start-game')
+    const jumpballSquare = document.querySelector('.square')
     document.querySelector('.U26fgb.JRY2Pb').click()
+    jumpballSquare.style.display = "none"
+    startGameButton.style.display = "block"
 } 
 
 let intervalToCheckIfJoined = setInterval(() => {
