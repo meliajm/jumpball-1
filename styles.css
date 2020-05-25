@@ -1,0 +1,33 @@
+.circle {
+    stroke: rgb(119, 202, 24);
+    fill: orange;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    position: relative;
+    /* animation: progress 1s ease-out forwards; */
+}
+
+/* @keyframes progress {
+    0% {
+    stroke-dasharray: 0 100;
+    }
+} */
+
+.square {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation-name: jumpball;
+    animation-duration: 4s;
+    animation-iteration-count: infinite; 
+  }
+
+
+  
+  @keyframes jumpball {
+    0%   {left:0px; top:0px;}
+    25%  {left:0px; top:200px;}
+    50%  {left:0px; top:0px;}
+    75%  {left:0px; top:200px;}
+    100% {left:0px; top:0px;}
+  }
