@@ -2,6 +2,9 @@ numberOfPeopleInMeeting = parseInt(document.querySelector(".wnPUne.N0PJ8e"))
 
 consoleLogMeetingMembersNames = document.querySelectorAll(".epqixc.YUGmGb").forEach( div => console.log(div.innerText))
 
+openPeopleButton = document.querySelector("div.uArJ5e.UQuaGc.kCyAyd.kW31ib.foXzLb.M9Bg4d").click()
+muteOne = document.querySelectorAll("span.XuQwKc")[1].click()
+
 const attachListenerToStartGameButton = () => {
     console.log('attachListenerToStartGameButton')
     const attachingToThis = document.querySelector('div.Jrb8ue')
