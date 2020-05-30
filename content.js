@@ -1,3 +1,7 @@
+numberOfPeopleInMeeting = parseInt(document.querySelector(".wnPUne.N0PJ8e"))
+
+consoleLogMeetingMembersNames = document.querySelectorAll(".epqixc.YUGmGb").forEach( div => console.log(div.innerText))
+
 const attachListenerToStartGameButton = () => {
     console.log('attachListenerToStartGameButton')
     const attachingToThis = document.querySelector('div.Jrb8ue')
