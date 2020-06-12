@@ -1,9 +1,23 @@
-numberOfPeopleInMeeting = parseInt(document.querySelector(".wnPUne.N0PJ8e"))
-
-consoleLogMeetingMembersNames = document.querySelectorAll(".epqixc.YUGmGb").forEach( div => console.log(div.innerText))
+// if all users are muted then start a jumpball, users play game to get ball, once one user is unmuted, jumpball stops
 
 // if all others are muted this Node List is empty
-nodeListOthersNotMuted = document.querySelectorAll('.lMHHZ.gtgjre.pZFrDd.kssMZb')
+
+console.log('go')
+const nodeListOthersNotMuted = document.querySelectorAll('.lMHHZ.gtgjre.pZFrDd.kssMZb')
+// equals lenght 1
+const youAreMuted = document.querySelectorAll('.JHK7jb.hVsWVc.FTMc0c')
+
+if (nodeListOthersNotMuted.length===0 && youAreMuted.length===1) {
+    attachListenerToStartGameButton()
+
+
+
+}
+
+const numberOfPeopleInMeeting = parseInt(document.querySelector(".wnPUne.N0PJ8e"))
+
+const consoleLogMeetingMembersNames = document.querySelectorAll(".epqixc.YUGmGb").forEach( div => console.log(div.innerText))
+
 
 // openPeopleButton = document.querySelector("div.uArJ5e.UQuaGc.kCyAyd.kW31ib.foXzLb.M9Bg4d").click()
 // muteOne = document.querySelectorAll("span.XuQwKc")[1].click()
@@ -16,6 +30,7 @@ const attachListenerToStartGameButton = () => {
     startGameButton.id = 'start-game'
     attachingToThis.appendChild(startGameButton)
     startGameButton.addEventListener('click', handleStartGameClick)  
+    startGameButton.click()
 }
 
 const handleStartGameClick = (e) => {
@@ -81,5 +96,4 @@ let intervalToCheckIfJoined = setInterval(() => {
     }
   },1000)
 
-// if all users are muted then start a jumpball, users play game to get ball, once one user is unmuted, jumpball stops
 
