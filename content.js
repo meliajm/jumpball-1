@@ -2,8 +2,11 @@ numberOfPeopleInMeeting = parseInt(document.querySelector(".wnPUne.N0PJ8e"))
 
 consoleLogMeetingMembersNames = document.querySelectorAll(".epqixc.YUGmGb").forEach( div => console.log(div.innerText))
 
-openPeopleButton = document.querySelector("div.uArJ5e.UQuaGc.kCyAyd.kW31ib.foXzLb.M9Bg4d").click()
-muteOne = document.querySelectorAll("span.XuQwKc")[1].click()
+// if all others are muted this Node List is empty
+nodeListOthersNotMuted = document.querySelectorAll('.lMHHZ.gtgjre.pZFrDd.kssMZb')
+
+// openPeopleButton = document.querySelector("div.uArJ5e.UQuaGc.kCyAyd.kW31ib.foXzLb.M9Bg4d").click()
+// muteOne = document.querySelectorAll("span.XuQwKc")[1].click()
 
 const attachListenerToStartGameButton = () => {
     console.log('attachListenerToStartGameButton')
@@ -77,4 +80,6 @@ let intervalToCheckIfJoined = setInterval(() => {
       clearInterval(intervalToCheckIfJoined)
     }
   },1000)
+
+// if all users are muted then start a jumpball, users play game to get ball, once one user is unmuted, jumpball stops
 

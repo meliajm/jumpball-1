@@ -153,7 +153,13 @@ function startJumpBall() {
 attachListenerToStartGameButton()
 
 
-
+for (let i=0; i<a.length; i++) {
+    if (what(a[i])===true) {
+        return true
+    } else {
+        return false
+    }
+}
 
 
 
