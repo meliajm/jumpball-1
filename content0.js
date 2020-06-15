@@ -1,3 +1,15 @@
+// make third observer for both youAreMutedBool and othersAreMutedArr and check when both are true to run jumpball
+    // and stop running jumpball when everyone is not muted
+
+    // actually do interval instead?
+    // currently not clearing the interval
+    // clearInterval(intervalToCheckIfEveryoneIsMuted)  
+
+
+// if (youAreMutedBool !== true || !othersAreMutedArr.every(isTrue)) {
+        //     console.log('everyone is NOOOOOOT muted')
+        // }
+            
 // if all users are muted then start a jumpball, users play game to get ball, once one user is unmuted, jumpball stops
 
 // if all others are muted this Node List is empty
