@@ -1,18 +1,10 @@
-// to join meeting do following:
-// document.querySelector('.e19J0b.CeoRYc').click()
-
-// can turn off mic before user joins meeting
-// document.querySelector('.U26fgb.JRY2Pb').click()
-       
-
+// do while loop?
+// break or continue?
 let youAreMutedBool 
 
 // sometimes this array includes two fasle with only one other user, not sure why, maybe have to do with 
 // which mutations are being observed
 let othersAreMutedArr
-
-let jumpballDisplayed
-
 
 // used to check if every value in othersAreMutedArr if true
 const isTrue = (currentValue) => currentValue === true;
@@ -26,6 +18,7 @@ const attachListenerToStartGameButton = () => {
     // attachingToThis.style.display = "none"
     attachCircle()
     startGameButton.style.display = "none"
+
 }
 
 const attachCircle = () => {
@@ -55,21 +48,18 @@ function attachListenerToJumpball() {
 const handleJumpball = (event) => {
     const jumpballSquare = document.querySelector('.square')
     console.log("you've got the jumpball")
-    jumpballDisplayed = true
     document.querySelector('.U26fgb.JRY2Pb').click()
     jumpballSquare.style.display = "none" 
 } 
 
 const callbackYouAreMuted = function(mutationsList) {
-    youAreMutedBool=false
     for(let mutation of mutationsList) {
         console.log(mutation.target.className)
         if (mutation.target.className==='JHK7jb hVsWVc FTMc0c') {
             youAreMutedBool=true
+        } else {
+            youAreMutedBool=false
         } 
-        // else {
-        //     youAreMutedBool=false
-        // } 
     }
     console.log('you are muted?', youAreMutedBool)
 };
@@ -77,7 +67,7 @@ const callbackYouAreMuted = function(mutationsList) {
 const callbackOthersAreMuted = function(mutationsList) {
     othersAreMutedArr = []
     // mutationsList might have bug, getting [false, false] when I think it should just be [false]
-    for (let mutation of mutationsList) {
+    for(let mutation of mutationsList) {
         if (mutation.type === 'attributes') {
             if (mutation.target.className==='lMHHZ gtgjre pZFrDd kssMZb') {
                 othersAreMutedArr.push(false)
@@ -86,7 +76,7 @@ const callbackOthersAreMuted = function(mutationsList) {
             }
         } 
     }
-    // console.log('othersAreMutedArr?', othersAreMutedArr)
+    console.log('othersAreMutedArr?', othersAreMutedArr)
 };
 
 const config = { attributes: true, childList: true, subtree: true };
@@ -100,60 +90,51 @@ const observerOthersAreMuted = new MutationObserver(callbackOthersAreMuted);
 let intervalToCheckIfJoined = setInterval(() => {
     const checkIfJoinedElement = document.querySelector(".Jrb8ue")
     const toAttachJumpballText = document.querySelector(".koV58.Zi94Db.S7urwe")
-        if (!!checkIfJoinedElement) {
-            console.log("joined meeting!")
-            if (!!toAttachJumpballText) {
-                attachJumpballText()
-                clearInterval(intervalToCheckIfJoined)
-            }
+    if (!!checkIfJoinedElement) {
+        console.log("joined meeting!")
+        if (!!toAttachJumpballText) {
+            attachJumpballText()
+            clearInterval(intervalToCheckIfJoined)
         }
-}, 1000);  
-
-
-let intervalToCheckIfEveryoneIsMuted = setInterval(() => {
-    
-    addObserverIfDesiredNodeAvailableYouAreMuted();
-    addObserverIfDesiredNodeAvailableOthersAreMuted();
-        
-    if (youAreMutedBool === true && othersAreMutedArr.every(isTrue) && othersAreMutedArr.length!==0) {
-        attachListenerToStartGameButton()
-        // here keeps on adding jumpballs
-        // console.log('BBBBBBBBjumpballDisplayed', jumpballDisplayed)
-        clearInterval(intervalToCheckIfEveryoneIsMuted);
-    } 
-    if (youAreMutedBool !== true || !othersAreMutedArr.every(isTrue)) { 
-        const jumpballSquare = document.querySelector('.square')
-        if (!!jumpballSquare) {
-            jumpballSquare.style.display = "none" 
-        }
+        // can turn off mic before user joins meeting
+        // document.querySelector('.U26fgb.JRY2Pb').click()
     }
-    
-    let intervalToCheckIfEveryoneIsMuted1 = setInterval(() => {
-    
-        // addObserverIfDesiredNodeAvailableYouAreMuted();
-        // addObserverIfDesiredNodeAvailableOthersAreMuted();
-        // console.log('JJJJJJjumpballDisplayed', jumpballDisplayed)
-        // console.log('other are muted', othersAreMutedArr)
-        if (!!jumpballDisplayed && youAreMutedBool === true && othersAreMutedArr.every(isTrue) && othersAreMutedArr.length!==0) {
-            attachListenerToStartGameButton()
-            jumpballDisplayed = false
-            clearInterval(intervalToCheckIfEveryoneIsMuted1);
+
+    let intervalToCheckIfEveryoneIsMuted = setInterval(() => {
+        let jumpballDisplayed;
+    // function startAndStopJumpball() {
+        // if (!!jumpballBool && youAreMutedBool === true && othersAreMutedArr.every(isTrue) && othersAreMutedArr.length!==0) {
+
+        if (!jumpballDisplayed && youAreMutedBool === true && othersAreMutedArr.every(isTrue) && othersAreMutedArr.length!==0) {
+            // attachListenerToStartGameButton()
+            jumpballDisplayed = true
+            // here keeps on adding jumpballs
+            console.log('BBBBBBBBjumpballDisplayed', jumpballDisplayed)
+            // clearInterval(intervalToCheckIfEveryoneIsMuted);
+            // intervalToCheckIfEveryoneIsMuted()
+            // continue
         } 
         if (youAreMutedBool !== true || !othersAreMutedArr.every(isTrue)) { 
             const jumpballSquare = document.querySelector('.square')
             if (!!jumpballSquare) {
                 jumpballSquare.style.display = "none" 
             }
+            jumpballDisplayed = false
+            console.log('JJJJJJjumpballDisplayed', jumpballDisplayed)
+            // clearInterval(intervalToCheckIfEveryoneIsMuted);
         }
+        
     }, 1000);
     
-}, 1000);
+    // startAndStopJumpball, 1000);
+    // add boolean
+    
 
-
+    addObserverIfDesiredNodeAvailableYouAreMuted();
+    addObserverIfDesiredNodeAvailableOthersAreMuted();
+}, 5000)
 
 function addObserverIfDesiredNodeAvailableYouAreMuted() {
-    // may need to change target node to document.querySelector('.IYwVEf.t4ocwe.a4MWl.uB7U9e') 
-    // in future so that don't have to toggle mute button three times to start
     const youAreMuted = document.querySelector('.JHK7jb.hVsWVc.FTMc0c')
     if (!youAreMuted) {
         window.setTimeout(addObserverIfDesiredNodeAvailableYouAreMuted,500);

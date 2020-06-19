@@ -11,9 +11,6 @@ let youAreMutedBool
 // which mutations are being observed
 let othersAreMutedArr
 
-let jumpballDisplayed
-
-
 // used to check if every value in othersAreMutedArr if true
 const isTrue = (currentValue) => currentValue === true;
 
@@ -55,7 +52,6 @@ function attachListenerToJumpball() {
 const handleJumpball = (event) => {
     const jumpballSquare = document.querySelector('.square')
     console.log("you've got the jumpball")
-    jumpballDisplayed = true
     document.querySelector('.U26fgb.JRY2Pb').click()
     jumpballSquare.style.display = "none" 
 } 
@@ -86,7 +82,7 @@ const callbackOthersAreMuted = function(mutationsList) {
             }
         } 
     }
-    // console.log('othersAreMutedArr?', othersAreMutedArr)
+    console.log('othersAreMutedArr?', othersAreMutedArr)
 };
 
 const config = { attributes: true, childList: true, subtree: true };
@@ -104,52 +100,39 @@ let intervalToCheckIfJoined = setInterval(() => {
             console.log("joined meeting!")
             if (!!toAttachJumpballText) {
                 attachJumpballText()
+                timerCheckIfJumpballStartOrStop()
                 clearInterval(intervalToCheckIfJoined)
             }
         }
-}, 1000);  
+}, 1000);
 
+function timerCheckIfJumpballStartOrStop() {
 
-let intervalToCheckIfEveryoneIsMuted = setInterval(() => {
-    
+    let jumpballDisplayed;
     addObserverIfDesiredNodeAvailableYouAreMuted();
     addObserverIfDesiredNodeAvailableOthersAreMuted();
-        
-    if (youAreMutedBool === true && othersAreMutedArr.every(isTrue) && othersAreMutedArr.length!==0) {
+
+    if (!jumpballDisplayed && youAreMutedBool === true && othersAreMutedArr.every(isTrue) && othersAreMutedArr.length!==0) {
         attachListenerToStartGameButton()
-        // here keeps on adding jumpballs
-        // console.log('BBBBBBBBjumpballDisplayed', jumpballDisplayed)
-        clearInterval(intervalToCheckIfEveryoneIsMuted);
-    } 
-    if (youAreMutedBool !== true || !othersAreMutedArr.every(isTrue)) { 
+        jumpballDisplayed = true
+        console.log('BBBBBBBBjumpballDisplayed', jumpballDisplayed)
+        window.setTimeout(timerCheckIfJumpballStartOrStop,1000);
+        return;
+    }
+
+    else {
+    // if (youAreMutedBool !== true || !othersAreMutedArr.every(isTrue)) { 
         const jumpballSquare = document.querySelector('.square')
         if (!!jumpballSquare) {
             jumpballSquare.style.display = "none" 
         }
-    }
+        jumpballDisplayed = false
+        window.setTimeout(timerCheckIfJumpballStartOrStop,1000);
+        console.log('JJJJJJjumpballDisplayed', jumpballDisplayed)
+        return;
+    }    
     
-    let intervalToCheckIfEveryoneIsMuted1 = setInterval(() => {
-    
-        // addObserverIfDesiredNodeAvailableYouAreMuted();
-        // addObserverIfDesiredNodeAvailableOthersAreMuted();
-        // console.log('JJJJJJjumpballDisplayed', jumpballDisplayed)
-        // console.log('other are muted', othersAreMutedArr)
-        if (!!jumpballDisplayed && youAreMutedBool === true && othersAreMutedArr.every(isTrue) && othersAreMutedArr.length!==0) {
-            attachListenerToStartGameButton()
-            jumpballDisplayed = false
-            clearInterval(intervalToCheckIfEveryoneIsMuted1);
-        } 
-        if (youAreMutedBool !== true || !othersAreMutedArr.every(isTrue)) { 
-            const jumpballSquare = document.querySelector('.square')
-            if (!!jumpballSquare) {
-                jumpballSquare.style.display = "none" 
-            }
-        }
-    }, 1000);
-    
-}, 1000);
-
-
+}
 
 function addObserverIfDesiredNodeAvailableYouAreMuted() {
     // may need to change target node to document.querySelector('.IYwVEf.t4ocwe.a4MWl.uB7U9e') 
